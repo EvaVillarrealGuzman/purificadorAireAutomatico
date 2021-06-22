@@ -1,0 +1,757 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "SmartIoT",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "center",
+            "filterable": false
+          },
+          "displayName": "NO2",
+          "mappings": [],
+          "max": 500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#fade2a",
+                "value": 50
+              },
+              {
+                "color": "#fa6400",
+                "value": 100
+              },
+              {
+                "color": "#f2495c",
+                "value": 150
+              },
+              {
+                "color": "#8f3bb8",
+                "value": 200
+              },
+              {
+                "color": "rgba(110, 19, 12, 0.97)",
+                "value": 300
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Tiempo"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Tiempo"
+          }
+        ]
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "calidad_aire",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "no2"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NO2 Actual",
+      "type": "table"
+    },
+    {
+      "datasource": "SmartIoT",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "max": 500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#fade2a",
+                "value": 50
+              },
+              {
+                "color": "#fa6400",
+                "value": 100
+              },
+              {
+                "color": "#f2495c",
+                "value": 150
+              },
+              {
+                "color": "#8f3bb8",
+                "value": 200
+              },
+              {
+                "color": "rgba(110, 19, 12, 0.97)",
+                "value": 300
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "1m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "limit": "1",
+          "measurement": "calidad_aire",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "no2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NO2 Actual",
+      "type": "gauge"
+    },
+    {
+      "circleMaxSize": 30,
+      "circleMinSize": 2,
+      "colors": [
+        "#37872D",
+        "#FADE2A",
+        "#FA6400",
+        "#F2495C",
+        "#8F3BB8",
+        "rgba(110, 19, 12, 0.97)"
+      ],
+      "datasource": "SmartIoT",
+      "decimals": 0,
+      "description": "",
+      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 6,
+      "initialZoom": "3",
+      "locationData": "table",
+      "mapCenter": "custom",
+      "mapCenterLatitude": "-38.416097",
+      "mapCenterLongitude": "-63.616672",
+      "maxDataPoints": 1,
+      "mouseWheelZoom": false,
+      "pluginVersion": "7.3.7",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "",
+        "latitudeField": "latitud",
+        "longitudeField": "longitud",
+        "metricField": "metric",
+        "queryType": "coordinates"
+      },
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "1m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "latitud"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "longitud"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "limit": "1",
+          "measurement": "calidad_aire",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "no2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "metric"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "50, 100, 150, 200, 300",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Mapa de concentración de NO2",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "microg/m3",
+      "unitSingle": "",
+      "unitSingular": "microg/m3",
+      "valueName": "total"
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                200
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "1m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "0m",
+        "frequency": "1m",
+        "handler": 1,
+        "message": "Prender Purificador",
+        "name": "Niveles de Concentración de NO2 peligroso",
+        "noDataState": "ok",
+        "notifications": [
+          {
+            "uid": "LqEs3mgnk"
+          }
+        ]
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "SmartIoT",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "displayName": "NO2",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "maxDataPoints": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "NO2",
+          "groupBy": [],
+          "measurement": "calidad_aire",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"no2\") AS \"NO2\" FROM \"air_quality\" WHERE $timeFilter GROUP BY time(1m) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "no2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "NO2"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 200
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Gráfico de concentración de NO2",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "conμgm3",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "SmartIoT",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "calculation": "max",
+            "colorPalette": "interpolateSpectral",
+            "colorSpace": "rgb",
+            "filterable": false,
+            "groupBy": 15,
+            "invertPalette": true,
+            "nullValueColor": "rgb(155, 155, 155)"
+          },
+          "mappings": [],
+          "max": 500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#fade2a",
+                "value": 50
+              },
+              {
+                "color": "#fa6400",
+                "value": 100
+              },
+              {
+                "color": "#f2495c",
+                "value": 150
+              },
+              {
+                "color": "#8f3bb8",
+                "value": 200
+              },
+              {
+                "color": "rgba(110, 19, 12, 0.97)",
+                "value": 300
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 16,
+      "options": {
+        "from": "0",
+        "legendGradientQuality": "high",
+        "showCellBorder": false,
+        "showLegend": true,
+        "showTooltip": true,
+        "showValueIndicator": false,
+        "to": "0"
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "1m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "limit": "",
+          "measurement": "calidad_aire",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "no2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "NO2 Actual",
+      "type": "marcusolsson-hourly-heatmap-panel"
+    },
+    {
+      "dashboardFilter": "",
+      "dashboardTags": [],
+      "datasource": "SmartIoT",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "displayName": "NO2",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "conμgm3"
+        },
+        "overrides": []
+      },
+      "folderId": null,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 14,
+      "limit": 10,
+      "maxDataPoints": 1,
+      "nameFilter": "",
+      "onlyAlertsOnDashboard": true,
+      "pluginVersion": "7.3.7",
+      "show": "changes",
+      "sortOrder": 1,
+      "stateFilter": [],
+      "targets": [
+        {
+          "alias": "NO2",
+          "groupBy": [],
+          "measurement": "air_quality",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"no2\") AS \"NO2\" FROM \"air_quality\" WHERE $timeFilter GROUP BY time(1m) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "no2"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "NO2"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alertas por concentraciones peligrosas de NO2",
+      "type": "alertlist"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-7d",
+    "to": "now-1m"
+  },
+  "timepicker": {
+    "nowDelay": "1m"
+  },
+  "timezone": "",
+  "title": "Concentración de NO2 en Cliente 1",
+  "uid": "65-jr73Mk",
+  "version": 62
+}
