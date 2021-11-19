@@ -7,8 +7,7 @@ services:
       - "./mosquitto:/mosquitto"
     networks:
       - netBroker
-    ports:
-      - "1883:1883"
+      - jmeter-network
 
   telegraf:
     hostname: telegraf-smartiot
@@ -48,9 +47,18 @@ services:
     volumes:
       - grafana-smartiot-data:/var/lib/grafana
 
+  jmeter:
+    build: ./jmeter
+    container_name: jmeter
+    tty: true
+    networks:
+      - jmeter-network
+
 volumes:
   grafana-smartiot-data:
   influxdb-smartiot-data:
 networks:
   netInflux:
   netBroker:
+  jmeter-network:
+    driver: bridge

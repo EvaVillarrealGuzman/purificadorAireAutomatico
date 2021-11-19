@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Grafana Renergia" enabled="true">
+      <stringProp name="TestPlan.comments">Stress test</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">text/plain</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Cilente 1 - Sala 1 " enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">60</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+        <boolProp name="ThreadGroup.delayedStart">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <net.xmeter.samplers.ConnectSampler guiclass="net.xmeter.gui.ConnectSamplerUI" testclass="net.xmeter.samplers.ConnectSampler" testname="MQTT Connect" enabled="true">
+          <stringProp name="mqtt.server">broker</stringProp>
+          <stringProp name="mqtt.port">1883</stringProp>
+          <stringProp name="mqtt.version">3.1</stringProp>
+          <stringProp name="mqtt.conn_timeout">10</stringProp>
+          <stringProp name="mqtt.protocol">TCP</stringProp>
+          <stringProp name="mqtt.ws_path"></stringProp>
+          <boolProp name="mqtt.dual_ssl_authentication">false</boolProp>
+          <stringProp name="mqtt.clientcert_file_path"></stringProp>
+          <stringProp name="mqtt.clientcert_password"></stringProp>
+          <stringProp name="mqtt.user_name"></stringProp>
+          <stringProp name="mqtt.password"></stringProp>
+          <stringProp name="mqtt.client_id_prefix">conn_</stringProp>
+          <boolProp name="mqtt.client_id_suffix">true</boolProp>
+          <stringProp name="mqtt.conn_keep_alive">300</stringProp>
+          <stringProp name="mqtt.conn_attampt_max">0</stringProp>
+          <stringProp name="mqtt.reconn_attampt_max">0</stringProp>
+          <stringProp name="mqtt.conn_clean_session">true</stringProp>
+        </net.xmeter.samplers.ConnectSampler>
+        <hashTree/>
+        <net.xmeter.samplers.PubSampler guiclass="net.xmeter.gui.PubSamplerUI" testclass="net.xmeter.samplers.PubSampler" testname="MQTT Pub" enabled="true">
+          <stringProp name="mqtt.topic_name">calidad_aire/cliente1/sala1</stringProp>
+          <stringProp name="mqtt.qos_level">0</stringProp>
+          <boolProp name="mqtt.add_timestamp">false</boolProp>
+          <stringProp name="mqtt.message_type">String</stringProp>
+          <stringProp name="mqtt.message_type_fixed_length">1024</stringProp>
+          <stringProp name="mqtt.message_to_sent">{ &quot;timestamp&quot;: ${__time(,curTime)}, &quot;latitud&quot;: &quot;-38.416097&quot;, &quot;longitud&quot;: &quot;-63.616672&quot;, &quot;no2&quot;: ${__Random(0,250)}, &quot;measurement&quot;: &quot;air_quality&quot;}
+</stringProp>
+          <boolProp name="mqtt.retained_message">false</boolProp>
+        </net.xmeter.samplers.PubSampler>
+        <hashTree/>
+        <net.xmeter.samplers.DisConnectSampler guiclass="net.xmeter.gui.DisConnectSamplerUI" testclass="net.xmeter.samplers.DisConnectSampler" testname="MQTT DisConnect " enabled="true"/>
+        <hashTree/>
+      </hashTree>
+      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+        <stringProp name="ConstantTimer.delay">20000</stringProp>
+      </ConstantTimer>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
