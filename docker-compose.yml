@@ -37,7 +37,8 @@ services:
 
   grafana:
     hostname: grafana-smartiot
-    image: grafana/grafana:7.3.7
+    build:
+      context: ./grafana
     networks:
       - netInflux
     ports:
